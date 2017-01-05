@@ -9,8 +9,6 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.Map;
 
-import static android.R.attr.key;
-
 public class FleetAssembler extends AppCompatActivity {
 
     @Override
@@ -29,10 +27,8 @@ public class FleetAssembler extends AppCompatActivity {
 
         for (int i2 = 0; i2<BUTTON_COUNT;i2++) {
             final int i = i2;
-            final int id = getResources().getIdentifier("button_" + i, "id", getPackageName());
-            Button btn = (Button) findViewById(id);
-
-
+            final int btn_id = getResources().getIdentifier("button_" + i, "id", getPackageName());
+            Button btn = (Button) findViewById(btn_id );
 
             btn.setOnClickListener(new View.OnClickListener()
             {
@@ -40,26 +36,26 @@ public class FleetAssembler extends AppCompatActivity {
                 {
                     if (i%2==0)
                     {
+                        final int id = getResources().getIdentifier("ship_" + i, "id", getPackageName());
                         minus(id);
-                        update(i);
+                        update(id);
                     }
                     else
                     {
+                        final int id = getResources().getIdentifier("ship_" + (i-1), "id", getPackageName());
                         plus(id);
-                        update(i-1);
+                        update(id);
                     }
                 }
             });
         }
     }
 
-
     Map<Integer, Integer> values = new HashMap<>();
-
 
     public void plus(int id) {
 
-        Integer oldValue = values.get(key);
+        Integer oldValue = values.get(id);
         if (oldValue == null) {
             values.put(id, 1);
         } else
@@ -69,7 +65,7 @@ public class FleetAssembler extends AppCompatActivity {
     }
 
     public void minus(int id) {
-        Integer oldValue = values.get(key);
+        Integer oldValue = values.get(id);
         if (oldValue == null) {
             values.put(id, 1);
         } else
@@ -78,8 +74,7 @@ public class FleetAssembler extends AppCompatActivity {
         }
     }
 
-    public void update(int i) {
-        final int id = getResources().getIdentifier("ship_" + i, "id", getPackageName());
+    public void update(int id) {
         TextView view = (TextView) findViewById(id);
         Integer value = values.get(id);
         if (value != null) {
