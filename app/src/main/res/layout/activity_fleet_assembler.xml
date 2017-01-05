@@ -15,6 +15,7 @@
         android:layout_width="200dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
 
         <LinearLayout
@@ -24,10 +25,12 @@
             android:layout_marginBottom="10dp">
 
             <Button
+                android:onClick="minusShip(fighterNum) (FleetAssembler)"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="-"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:id="@+id/button_0" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -43,6 +46,7 @@
                     android:gravity="center_horizontal"/>
 
                 <TextView
+                    android:id="@+id/ship_0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
@@ -52,10 +56,12 @@
 
 
             <Button
+                android:onClick="plusFighter"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="+"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:id="@+id/button_1" />
 
         </LinearLayout>
 
@@ -66,10 +72,12 @@
             android:layout_marginBottom="10dp">
 
             <Button
+                android:onClick="minusCarrier"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="-"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:id="@+id/button_2" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -85,6 +93,7 @@
                     android:gravity="center_horizontal"/>
 
                 <TextView
+                    android:id="@+id/ship_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
@@ -94,10 +103,12 @@
 
 
             <Button
+                android:onClick="plusCarrier"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="+"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:id="@+id/button_3" />
 
         </LinearLayout>
 
@@ -108,10 +119,12 @@
             android:layout_marginBottom="10dp">
 
             <Button
+                android:onClick="minusDestroyer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="-"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:id="@+id/button_4" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -127,6 +140,7 @@
                     android:gravity="center_horizontal"/>
 
                 <TextView
+                    android:id="@+id/ship_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
@@ -136,10 +150,12 @@
 
 
             <Button
+                android:onClick="plusDestroyer"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="+"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:id="@+id/button_5" />
 
         </LinearLayout>
 
@@ -153,7 +169,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="-"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:onClick="minusCruiser"
+                android:id="@+id/button_6" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -169,6 +187,7 @@
                     android:gravity="center_horizontal"/>
 
                 <TextView
+                    android:id="@+id/ship_6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
@@ -181,7 +200,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="+"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:onClick="plusCruiser"
+                android:id="@+id/button_7" />
 
         </LinearLayout>
 
@@ -195,7 +216,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="-"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:onClick="minusDreadnaught"
+                android:id="@+id/button_8" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -211,6 +234,7 @@
                     android:gravity="center_horizontal"/>
 
                 <TextView
+                    android:id="@+id/ship_8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
@@ -223,7 +247,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="+"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:onClick="plusDreadnaught"
+                android:id="@+id/button_9" />
 
         </LinearLayout>
 
@@ -236,7 +262,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="-"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:onClick="minusWarsun"
+                android:id="@+id/button_10" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -252,6 +280,7 @@
                     android:gravity="center_horizontal"/>
 
                 <TextView
+                    android:id="@+id/ship_10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
@@ -264,7 +293,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="+"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:onClick="plusWarsun"
+                android:id="@+id/button_11"/>
 
         </LinearLayout>
 
