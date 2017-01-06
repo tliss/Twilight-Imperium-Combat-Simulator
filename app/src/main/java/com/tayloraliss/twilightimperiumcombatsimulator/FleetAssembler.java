@@ -25,16 +25,16 @@ public class FleetAssembler extends AppCompatActivity {
 
         final int BUTTON_COUNT = 12;
 
-        for (int i2 = 0; i2<BUTTON_COUNT;i2++) {
+        for (int i2 = 0; i2 < BUTTON_COUNT; i2++) {
             final int i = i2;
             final int btn_id = getResources().getIdentifier("button_" + i, "id", getPackageName());
-            Button btn = (Button) findViewById(btn_id );
 
+            Button btn = (Button) findViewById(btn_id );
             btn.setOnClickListener(new View.OnClickListener()
             {
                 public void onClick(View v)
                 {
-                    if (i%2==0)
+                    if (i%2 == 0)
                     {
                         final int id = getResources().getIdentifier("ship_" + i, "id", getPackageName());
                         minus(id);
@@ -43,6 +43,7 @@ public class FleetAssembler extends AppCompatActivity {
                     else
                     {
                         final int id = getResources().getIdentifier("ship_" + (i-1), "id", getPackageName());
+                        System.out.println("ID is " + id);
                         plus(id);
                         update(id);
                     }
@@ -58,7 +59,8 @@ public class FleetAssembler extends AppCompatActivity {
         Integer oldValue = values.get(id);
         if (oldValue == null) {
             values.put(id, 1);
-        } else
+        }
+        else
         {
             values.put(id, oldValue + 1);
         }
@@ -67,10 +69,16 @@ public class FleetAssembler extends AppCompatActivity {
     public void minus(int id) {
         Integer oldValue = values.get(id);
         if (oldValue == null) {
-            values.put(id, 1);
-        } else
+            values.put(id, 0);
+        }
+        else
         {
-            values.put(id, oldValue - 1);
+            if (oldValue == 0){
+                return;
+            }
+            else {
+                values.put(id, oldValue - 1);
+            }
         }
     }
 
@@ -79,7 +87,8 @@ public class FleetAssembler extends AppCompatActivity {
         Integer value = values.get(id);
         if (value != null) {
             view.setText(String.valueOf(value));
-        } else
+        }
+        else
         {
             view.setText("0");
         }
