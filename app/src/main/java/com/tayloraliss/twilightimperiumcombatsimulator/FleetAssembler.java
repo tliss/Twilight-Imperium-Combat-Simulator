@@ -29,7 +29,7 @@ public class FleetAssembler extends AppCompatActivity {
             final int i = i2;
             final int btn_id = getResources().getIdentifier("button_" + i, "id", getPackageName());
 
-            Button btn = (Button) findViewById(btn_id );
+            Button btn = (Button) findViewById(btn_id);
             btn.setOnClickListener(new View.OnClickListener()
             {
                 public void onClick(View v)
