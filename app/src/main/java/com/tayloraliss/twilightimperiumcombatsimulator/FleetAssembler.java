@@ -9,6 +9,10 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.Map;
 
+//TODO: Create two classes, OnMinusClickListener implements OnClickListener, and OnPlusClickListener, etc
+// and/or create a custom Button subclasses: MinusButton and PlusButton
+// and/or the whole minus-plus-field could be made into a custom control
+
 public class FleetAssembler extends AppCompatActivity {
 
     @Override
