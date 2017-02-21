@@ -25,7 +25,7 @@
             android:layout_marginBottom="20dp">
 
             <Button
-                android:onClick="minusShip(fighterNum) (FleetAssembler)"
+                android:onClick="minusFighter"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="-"
@@ -46,7 +46,7 @@
                     android:gravity="center_horizontal"/>
 
                 <TextView
-                    android:id="@+id/ship_0"
+                    android:id="@+id/fighterNumText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
@@ -93,7 +93,7 @@
                     android:gravity="center_horizontal"/>
 
                 <TextView
-                    android:id="@+id/ship_2"
+                    android:id="@+id/carrierNumText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
@@ -140,7 +140,7 @@
                     android:gravity="center_horizontal"/>
 
                 <TextView
-                    android:id="@+id/ship_4"
+                    android:id="@+id/destroyerNumText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
@@ -187,7 +187,7 @@
                     android:gravity="center_horizontal"/>
 
                 <TextView
-                    android:id="@+id/ship_6"
+                    android:id="@+id/cruiserNumText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
@@ -234,7 +234,7 @@
                     android:gravity="center_horizontal"/>
 
                 <TextView
-                    android:id="@+id/ship_8"
+                    android:id="@+id/dreadnaughtNumText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
@@ -281,7 +281,7 @@
                     android:gravity="center_horizontal"/>
 
                 <TextView
-                    android:id="@+id/ship_10"
+                    android:id="@+id/warsunNumText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
