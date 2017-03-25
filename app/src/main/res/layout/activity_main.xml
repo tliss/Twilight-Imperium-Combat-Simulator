@@ -56,6 +56,16 @@
             android:text="RUN SIMULATION"
             android:id="@+id/runSimulation"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/black"
+            android:fontFamily="sans-serif-light"
+            android:textSize="24sp"
+            android:text="unchanged"
+            android:id="@+id/unchanged"/>
+
     </LinearLayout>
 
 </RelativeLayout>

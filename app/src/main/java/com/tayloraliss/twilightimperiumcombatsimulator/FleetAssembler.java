@@ -1,7 +1,9 @@
 package com.tayloraliss.twilightimperiumcombatsimulator;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -55,11 +57,14 @@ public class FleetAssembler extends AppCompatActivity implements View.OnClickLis
         Button plusSix = (Button) findViewById(R.id.button_11);
         plusSix.setOnClickListener(this);
 
+        Button submit = (Button) findViewById(R.id.submit);
+        submit.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View b) {
 
+        //Declare a textView called "shipZeroNum"
         TextView shipZeroNum;
 
         switch (b.getId()){
@@ -129,6 +134,24 @@ public class FleetAssembler extends AppCompatActivity implements View.OnClickLis
                 shipZeroNum = (TextView) findViewById(R.id.warsunNumText);
                 shipZeroNum.setText(String.valueOf(numberOfWarsuns));
                 break;
+
+            //http://www.survivingwithandroid.com/2012/09/passing-data-between-activities-2.html
+            case R.id.submit:
+                Intent myIntent = new Intent(FleetAssembler.this, MainActivity.class);
+                Bundle myBundle = new Bundle();
+
+                Log.d("test", "inside = " + String.valueOf(numberOfFighters));
+
+                myBundle.putInt("fighters", numberOfFighters);
+                myBundle.putInt("Carriers", numberOfCarriers);
+                myBundle.putInt("Destroyers", numberOfDestroyers);
+                myBundle.putInt("Cruisers", numberOfCruisers);
+                myBundle.putInt("Dreadnaughts", numberOfDreadnaughts);
+                myBundle.putInt("Warsuns", numberOfWarsuns);
+
+                myIntent.putExtras(myBundle);
+
+                startActivity(myIntent);
         }
     }
 }

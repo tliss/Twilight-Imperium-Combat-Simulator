@@ -56,7 +56,6 @@
 
 
             <Button
-                android:onClick="plusFighter"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="+"
@@ -72,7 +71,6 @@
             android:layout_marginBottom="20dp">
 
             <Button
-                android:onClick="minusCarrier"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="-"
@@ -103,7 +101,6 @@
 
 
             <Button
-                android:onClick="plusCarrier"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="+"
@@ -119,7 +116,6 @@
             android:layout_marginBottom="20dp">
 
             <Button
-                android:onClick="minusDestroyer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="-"
@@ -150,7 +146,6 @@
 
 
             <Button
-                android:onClick="plusDestroyer"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="+"
@@ -170,7 +165,6 @@
                 android:layout_height="wrap_content"
                 android:text="-"
                 android:layout_weight="1"
-                android:onClick="minusCruiser"
                 android:id="@+id/button_6" />
 
             <LinearLayout
@@ -201,7 +195,6 @@
                 android:layout_height="match_parent"
                 android:text="+"
                 android:layout_weight="1"
-                android:onClick="plusCruiser"
                 android:id="@+id/button_7" />
 
         </LinearLayout>
@@ -217,7 +210,6 @@
                 android:layout_height="wrap_content"
                 android:text="-"
                 android:layout_weight="1"
-                android:onClick="minusDreadnaught"
                 android:id="@+id/button_8" />
 
             <LinearLayout
@@ -248,7 +240,6 @@
                 android:layout_height="match_parent"
                 android:text="+"
                 android:layout_weight="1"
-                android:onClick="plusDreadnaught"
                 android:id="@+id/button_9" />
 
         </LinearLayout>
@@ -264,7 +255,6 @@
                 android:layout_height="wrap_content"
                 android:text="-"
                 android:layout_weight="1"
-                android:onClick="minusWarsun"
                 android:id="@+id/button_10" />
 
             <LinearLayout
@@ -295,7 +285,6 @@
                 android:layout_height="match_parent"
                 android:text="+"
                 android:layout_weight="1"
-                android:onClick="plusWarsun"
                 android:id="@+id/button_11"/>
 
         </LinearLayout>
@@ -303,7 +292,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SUBMIT"/>
+            android:text="SUBMIT"
+            android:id="@+id/submit"/>
 
     </LinearLayout>
 
