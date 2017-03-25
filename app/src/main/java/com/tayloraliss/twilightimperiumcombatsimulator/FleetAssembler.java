@@ -12,12 +12,12 @@ public class FleetAssembler extends AppCompatActivity implements View.OnClickLis
 //Read this: http://stackoverflow.com/questions/29304765/why-am-i-not-allowed-to-use-setonclicklistener-in-this-situation
 //and This: http://stackoverflow.com/questions/40471106/why-do-we-implement-view-onclicklistener-if-we-can-have-to-set-androidonclick-e
 
-    int numberOfFighters = 0;
-    int numberOfCarriers = 0;
-    int numberOfDestroyers = 0;
-    int numberOfCruisers = 0;
-    int numberOfDreadnaughts = 0;
-    int numberOfWarsuns = 0;
+    int numberOfFighters;
+    int numberOfCarriers;
+    int numberOfDestroyers;
+    int numberOfCruisers;
+    int numberOfDreadnaughts ;
+    int numberOfWarsuns;
 
     @Override
     public void onBackPressed() {
@@ -31,6 +31,32 @@ public class FleetAssembler extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fleet_assembler);
         getSupportActionBar().hide();
+
+        Bundle myBundle = getIntent().getExtras();
+
+        numberOfFighters = myBundle.getInt("fighters");
+        TextView fighterDisp = (TextView) findViewById(R.id.fighterNumText);
+        fighterDisp.setText(String.valueOf(numberOfFighters));
+
+        numberOfCarriers = myBundle.getInt("carriers");
+        TextView carrierDisp = (TextView) findViewById(R.id.carrierNumText);
+        carrierDisp.setText(String.valueOf(numberOfCarriers));
+
+        numberOfDestroyers = myBundle.getInt("destroyers");
+        TextView destroyerDisp = (TextView) findViewById(R.id.destroyerNumText);
+        destroyerDisp.setText(String.valueOf(numberOfDestroyers));
+
+        numberOfCruisers = myBundle.getInt("cruisers");
+        TextView cruiserDisp = (TextView) findViewById(R.id.cruiserNumText);
+        cruiserDisp.setText(String.valueOf(numberOfCruisers));
+
+        numberOfDreadnaughts = myBundle.getInt("dreadnaughts");
+        TextView dreadnaughtDisp = (TextView) findViewById(R.id.dreadnaughtNumText);
+        dreadnaughtDisp.setText(String.valueOf(numberOfDreadnaughts));
+
+        numberOfWarsuns = myBundle.getInt("warsuns");
+        TextView warsunDisp = (TextView) findViewById(R.id.warsunNumText);
+        warsunDisp.setText(String.valueOf(numberOfWarsuns));
 
         Button minusOne = (Button) findViewById(R.id.button_0);
         minusOne.setOnClickListener(this);
@@ -64,7 +90,6 @@ public class FleetAssembler extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View b) {
 
-        //Declare a textView called "shipZeroNum"
         TextView shipZeroNum;
 
         switch (b.getId()){
@@ -138,16 +163,16 @@ public class FleetAssembler extends AppCompatActivity implements View.OnClickLis
             //http://www.survivingwithandroid.com/2012/09/passing-data-between-activities-2.html
             case R.id.submit:
                 Intent myIntent = new Intent(FleetAssembler.this, MainActivity.class);
+                myIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
                 Bundle myBundle = new Bundle();
 
-                Log.d("test", "inside = " + String.valueOf(numberOfFighters));
-
                 myBundle.putInt("fighters", numberOfFighters);
-                myBundle.putInt("Carriers", numberOfCarriers);
-                myBundle.putInt("Destroyers", numberOfDestroyers);
-                myBundle.putInt("Cruisers", numberOfCruisers);
-                myBundle.putInt("Dreadnaughts", numberOfDreadnaughts);
-                myBundle.putInt("Warsuns", numberOfWarsuns);
+                myBundle.putInt("carriers", numberOfCarriers);
+                myBundle.putInt("destroyers", numberOfDestroyers);
+                myBundle.putInt("cruisers", numberOfCruisers);
+                myBundle.putInt("dreadnaughts", numberOfDreadnaughts);
+                myBundle.putInt("warsuns", numberOfWarsuns);
 
                 myIntent.putExtras(myBundle);
 
