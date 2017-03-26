@@ -3,11 +3,10 @@ package com.tayloraliss.twilightimperiumcombatsimulator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     int yourFleetNumberOfFighters;
     int yourFleetNumberOfCarriers;
@@ -16,47 +15,81 @@ public class MainActivity extends AppCompatActivity {
     int yourFleetNumberOfDreadnaughts;
     int yourFleetNumberOfWarsuns;
 
+    int enemyFleetNumberOfFighters;
+    int enemyFleetNumberOfCarriers;
+    int enemyFleetNumberOfDestroyers;
+    int enemyFleetNumberOfCruisers;
+    int enemyFleetNumberOfDreadnaughts;
+    int enemyFleetNumberOfWarsuns;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide(); // Hide the action bar
-        ((Button)findViewById(R.id.runSimulation)).setEnabled(false);
+        findViewById(R.id.runSimulation).setEnabled(false); //Disable runSimulation button
+
+        Button yourAssemble = (Button) findViewById(R.id.yourAssemble);
+        yourAssemble.setOnClickListener(this);
+        Button enemyAssemble = (Button) findViewById(R.id.enemyAssemble);
+        enemyAssemble.setOnClickListener(this);
 
         Bundle myBundle = getIntent().getExtras();
 
         if (myBundle != null) {
+            yourFleetNumberOfFighters = myBundle.getInt("yourFighters");
+            yourFleetNumberOfCarriers = myBundle.getInt("yourCarriers");
+            yourFleetNumberOfDestroyers = myBundle.getInt("yourDestroyers");
+            yourFleetNumberOfCruisers = myBundle.getInt("yourCruisers");
+            yourFleetNumberOfDreadnaughts = myBundle.getInt("yourDreadnaughts");
+            yourFleetNumberOfWarsuns = myBundle.getInt("yourWarsuns");
 
-            yourFleetNumberOfFighters = myBundle.getInt("fighters");
-            yourFleetNumberOfCarriers = myBundle.getInt("carriers");
-            yourFleetNumberOfDestroyers = myBundle.getInt("destroyers");
-            yourFleetNumberOfCruisers = myBundle.getInt("cruisers");
-            yourFleetNumberOfDreadnaughts = myBundle.getInt("dreadnaughts");
-            yourFleetNumberOfWarsuns = myBundle.getInt("warsuns");
-
+            enemyFleetNumberOfFighters = myBundle.getInt("enemyFighters");
+            enemyFleetNumberOfCarriers = myBundle.getInt("enemyCarriers");
+            enemyFleetNumberOfDestroyers = myBundle.getInt("enemyDestroyers");
+            enemyFleetNumberOfCruisers = myBundle.getInt("enemyCruisers");
+            enemyFleetNumberOfDreadnaughts = myBundle.getInt("enemyDreadnaughts");
+            enemyFleetNumberOfWarsuns = myBundle.getInt("enemyWarsuns");
         }
     }
 
-    public void switchToAssembleFleet(View view){
+    @Override
+    public void onClick(View b) {
+        switch (b.getId()) {
+            case R.id.yourAssemble:
+                switchToAssembleFleet("you");
+                break;
+            case R.id.enemyAssemble:
+                switchToAssembleFleet("enemy");
+                break;
+        }
+    }
+
+    public void switchToAssembleFleet(String owner){
         Intent myIntent = new Intent(MainActivity.this, FleetAssembler.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
         Bundle myBundle = new Bundle();
 
-        myBundle.putInt("fighters", yourFleetNumberOfFighters);
-        myBundle.putInt("carriers", yourFleetNumberOfCarriers);
-        myBundle.putInt("destroyers", yourFleetNumberOfDestroyers);
-        myBundle.putInt("cruisers", yourFleetNumberOfCruisers);
-        myBundle.putInt("dreadnaughts", yourFleetNumberOfDreadnaughts);
-        myBundle.putInt("warsuns", yourFleetNumberOfWarsuns);
+        //Pack up variables into bundle
+        myBundle.putInt("yourFighters", yourFleetNumberOfFighters);
+        myBundle.putInt("yourCarriers", yourFleetNumberOfCarriers);
+        myBundle.putInt("yourDestroyers", yourFleetNumberOfDestroyers);
+        myBundle.putInt("yourCruisers", yourFleetNumberOfCruisers);
+        myBundle.putInt("yourDreadnaughts", yourFleetNumberOfDreadnaughts);
+        myBundle.putInt("yourWarsuns", yourFleetNumberOfWarsuns);
+
+        myBundle.putInt("enemyFighters", enemyFleetNumberOfFighters);
+        myBundle.putInt("enemyCarriers", enemyFleetNumberOfCarriers);
+        myBundle.putInt("enemyDestroyers", enemyFleetNumberOfDestroyers);
+        myBundle.putInt("enemyCruisers", enemyFleetNumberOfCruisers);
+        myBundle.putInt("enemyDreadnaughts", enemyFleetNumberOfDreadnaughts);
+        myBundle.putInt("enemyWarsuns", enemyFleetNumberOfWarsuns);
+
+        myBundle.putString("owner", owner);
 
         myIntent.putExtras(myBundle);
 
         this.startActivity(myIntent);
     }
-
-
-
-
-
 }

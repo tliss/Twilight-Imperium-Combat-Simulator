@@ -18,6 +18,7 @@ public class FleetAssembler extends AppCompatActivity implements View.OnClickLis
     int numberOfCruisers;
     int numberOfDreadnaughts ;
     int numberOfWarsuns;
+    String owner;
 
     @Override
     public void onBackPressed() {
@@ -34,27 +35,39 @@ public class FleetAssembler extends AppCompatActivity implements View.OnClickLis
 
         Bundle myBundle = getIntent().getExtras();
 
-        numberOfFighters = myBundle.getInt("fighters");
+        if (myBundle.getString("owner").equals("you")) {
+            numberOfFighters = myBundle.getInt("yourFighters");
+            numberOfCarriers = myBundle.getInt("yourCarriers");
+            numberOfDestroyers = myBundle.getInt("yourDestroyers");
+            numberOfCruisers = myBundle.getInt("yourCruisers");
+            numberOfDreadnaughts = myBundle.getInt("yourDreadnaughts");
+            numberOfWarsuns = myBundle.getInt("yourWarsuns");
+        } else {
+            numberOfFighters = myBundle.getInt("enemyFighters");
+            numberOfCarriers = myBundle.getInt("enemyCarriers");
+            numberOfDestroyers = myBundle.getInt("enemyDestroyers");
+            numberOfCruisers = myBundle.getInt("enemyCruisers");
+            numberOfDreadnaughts = myBundle.getInt("enemyDreadnaughts");
+            numberOfWarsuns = myBundle.getInt("enemyWarsuns");
+        }
+
+        owner = myBundle.getString("owner");
+
         TextView fighterDisp = (TextView) findViewById(R.id.fighterNumText);
         fighterDisp.setText(String.valueOf(numberOfFighters));
 
-        numberOfCarriers = myBundle.getInt("carriers");
         TextView carrierDisp = (TextView) findViewById(R.id.carrierNumText);
         carrierDisp.setText(String.valueOf(numberOfCarriers));
 
-        numberOfDestroyers = myBundle.getInt("destroyers");
         TextView destroyerDisp = (TextView) findViewById(R.id.destroyerNumText);
         destroyerDisp.setText(String.valueOf(numberOfDestroyers));
 
-        numberOfCruisers = myBundle.getInt("cruisers");
         TextView cruiserDisp = (TextView) findViewById(R.id.cruiserNumText);
         cruiserDisp.setText(String.valueOf(numberOfCruisers));
 
-        numberOfDreadnaughts = myBundle.getInt("dreadnaughts");
         TextView dreadnaughtDisp = (TextView) findViewById(R.id.dreadnaughtNumText);
         dreadnaughtDisp.setText(String.valueOf(numberOfDreadnaughts));
 
-        numberOfWarsuns = myBundle.getInt("warsuns");
         TextView warsunDisp = (TextView) findViewById(R.id.warsunNumText);
         warsunDisp.setText(String.valueOf(numberOfWarsuns));
 
@@ -165,18 +178,43 @@ public class FleetAssembler extends AppCompatActivity implements View.OnClickLis
                 Intent myIntent = new Intent(FleetAssembler.this, MainActivity.class);
                 myIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
-                Bundle myBundle = new Bundle();
+                Bundle sendBundle = new Bundle();
+                Bundle myBundle = getIntent().getExtras();
 
-                myBundle.putInt("fighters", numberOfFighters);
-                myBundle.putInt("carriers", numberOfCarriers);
-                myBundle.putInt("destroyers", numberOfDestroyers);
-                myBundle.putInt("cruisers", numberOfCruisers);
-                myBundle.putInt("dreadnaughts", numberOfDreadnaughts);
-                myBundle.putInt("warsuns", numberOfWarsuns);
+                if (owner.equals("you")){
+                    sendBundle.putInt("yourFighters", numberOfFighters);
+                    sendBundle.putInt("yourCarriers", numberOfCarriers);
+                    sendBundle.putInt("yourDestroyers", numberOfDestroyers);
+                    sendBundle.putInt("yourCruisers", numberOfCruisers);
+                    sendBundle.putInt("yourDreadnaughts", numberOfDreadnaughts);
+                    sendBundle.putInt("yourWarsuns", numberOfWarsuns);
 
-                myIntent.putExtras(myBundle);
+                    sendBundle.putInt("enemyFighters", myBundle.getInt("enemyFighters"));
+                    sendBundle.putInt("enemyCarriers", myBundle.getInt("enemyCarriers"));
+                    sendBundle.putInt("enemyDestroyers", myBundle.getInt("enemyDestroyers"));
+                    sendBundle.putInt("enemyCruisers", myBundle.getInt("enemyCruiisers"));
+                    sendBundle.putInt("enemyDreadnaughts", myBundle.getInt("enemyDreadnaughts"));
+                    sendBundle.putInt("enemyWarsuns", myBundle.getInt("enemyWarsuns"));
+                } else {
+                    sendBundle.putInt("enemyFighters", numberOfFighters);
+                    sendBundle.putInt("enemyCarriers", numberOfCarriers);
+                    sendBundle.putInt("enemyDestroyers", numberOfDestroyers);
+                    sendBundle.putInt("enemyCruisers", numberOfCruisers);
+                    sendBundle.putInt("enemyDreadnaughts", numberOfDreadnaughts);
+                    sendBundle.putInt("enemyWarsuns", numberOfWarsuns);
+
+                    sendBundle.putInt("yourFighters", myBundle.getInt("yourFighters"));
+                    sendBundle.putInt("yourCarriers", myBundle.getInt("yourCarriers"));
+                    sendBundle.putInt("yourDestroyers", myBundle.getInt("yourDestroyers"));
+                    sendBundle.putInt("yourCruisers", myBundle.getInt("yourCruiisers"));
+                    sendBundle.putInt("yourDreadnaughts", myBundle.getInt("yourDreadnaughts"));
+                    sendBundle.putInt("yourWarsuns", myBundle.getInt("yourWarsuns"));
+                }
+
+                myIntent.putExtras(sendBundle);
 
                 startActivity(myIntent);
+                break;
         }
     }
 }

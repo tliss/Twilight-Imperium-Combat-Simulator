@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="UNASSEMBLED"
             android:layout_marginBottom="20dp"
-            android:onClick="switchToAssembleFleet"/>
+            android:id="@+id/yourAssemble"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -48,7 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="UNASSEMBLED"
-            android:layout_marginBottom="60dp"/>
+            android:layout_marginBottom="60dp"
+            android:id="@+id/enemyAssemble"/>
 
         <Button
             android:layout_width="match_parent"
