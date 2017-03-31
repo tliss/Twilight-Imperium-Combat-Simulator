@@ -1,21 +1,17 @@
 package com.tayloraliss.twilightimperiumcombatsimulator.ships;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Player {
-	
-	String name;
-	ArrayList<Ship> fleet = new ArrayList<Ship>();
-	
-	public Player(String startName){
-		name = startName;
+
+	private ArrayList<Integer> shipNums;
+
+	public Player(ArrayList<Integer> passedArray){
+		shipNums = passedArray;
 	}
-	
-	public String getName(){
-		return name;
-	}
-	
+
+    ArrayList<Ship> fleet = new ArrayList<Ship>();
+
 	public ArrayList<Ship> getFleet(){
 		return fleet;
 	}
@@ -32,56 +28,42 @@ public class Player {
 	
 	public void buildFleet(){
 		
-		Scanner userInput = new Scanner(System.in);
-		
-		System.out.println("How many fighters?");
-		
-		int fighters = Integer.parseInt(userInput.next());
+		int fighters = shipNums.get(0);
 		
 		while (fighters > 0){
 			fleet.add(new Fighter());
 			fighters--;
 		}
 		
-		System.out.println("How many carriers?");
-		
-		int carriers = Integer.parseInt(userInput.next());
+		int carriers = shipNums.get(1);
 		
 		while (carriers > 0){
 			fleet.add(new Carrier());
 			carriers--;
-		}	
+		}
 		
-		System.out.println("How many destroyers?");
-		
-		int destroyers = Integer.parseInt(userInput.next());
+		int destroyers = shipNums.get(2);;
 		
 		while (destroyers > 0){
 			fleet.add(new Destroyer());
 			destroyers--;
 		}
 		
-		System.out.println("How many cruisers?");
-		
-		int cruisers = Integer.parseInt(userInput.next());
+		int cruisers = shipNums.get(3);
 		
 		while (cruisers > 0){
 			fleet.add(new Cruiser());
 			cruisers--;
 		}
-		
-		System.out.println("How many dreadnaughts:");
-		
-		int dreadnaughts = Integer.parseInt(userInput.next());
+
+		int dreadnaughts = shipNums.get(4);
 		
 		while (dreadnaughts > 0){
 			fleet.add(new Dreadnaught());
 			dreadnaughts--;
 		}
 		
-		System.out.println("How many warsuns?");
-		
-		int warsuns = Integer.parseInt(userInput.next());
+		int warsuns = shipNums.get(5);
 		
 		while (warsuns > 0){
 			fleet.add(new Warsun());
@@ -113,13 +95,13 @@ public class Player {
 		int hitCounter = 0;
 
 		for (Ship ship : this.fleet){
-			if (ship.returnName() != "warsun" && ship.getIsActive() == true){
+			if ((!ship.returnName().equals("warsun")) && ship.getIsActive()){
 				int roll = returnRoll();
 				if (roll >= ship.returnAttack()){
 					hitCounter++;
 				}
 			}
-			else if (ship.returnName() == "warsun" && ship.getIsActive() == true){
+			else if (ship.returnName().equals("warsun") && ship.getIsActive()){
 				for (int i=0; i<3; i++){
 					int roll = returnRoll();
 					if (roll >= ship.returnAttack()){
@@ -136,11 +118,7 @@ public class Player {
 		
 		int roll = returnRoll();
 		if (roll >= 9){
-			System.out.println("Destroyer's barrage rolled " + roll + "! Hit!");
 			hitCounter++;
-		}
-		else {
-			System.out.println("Destroyer's barrage rolled " + roll + "! Miss!");
 		}
 		
 		return hitCounter;
@@ -152,17 +130,17 @@ public class Player {
 	}
 	
 	// Prints out all the ships in the fleet
-	public void viewFleet(){
-		for(Ship ship : this.fleet){
-			System.out.print(ship.returnName() + " | ");
-		}
-		System.out.println("");
-	}
+//	public void viewFleet(){
+//		for(Ship ship : this.fleet){
+//			System.out.print(ship.returnName() + " | ");
+//		}
+//		System.out.println("");
+//	}
 	
 	public boolean fleetIsDead(){
 		boolean dead = true;
 		for (Ship ship : fleet){
-			if (ship.getIsActive() == true){
+			if (ship.getIsActive()){
 				dead = false;
 			}
 		}
@@ -184,28 +162,28 @@ public class Player {
 		int warsunDamagedCount = 0;
 		
 		for (Ship ship : fleet){
-			if (ship instanceof Fighter && ship.getIsActive() == true){
+			if (ship instanceof Fighter && ship.getIsActive()){
 				fighterCount++;
 			}
-			else if (ship instanceof Carrier && ship.getIsActive() == true){
+			else if (ship instanceof Carrier && ship.getIsActive()){
 				carrierCount++;
 			}
-			else if (ship instanceof Destroyer && ship.getIsActive() == true){
+			else if (ship instanceof Destroyer && ship.getIsActive()){
 				destroyerCount++;
 			}
-			else if (ship instanceof Cruiser && ship.getIsActive() == true){
+			else if (ship instanceof Cruiser && ship.getIsActive()){
 				cruiserCount++;
 			}
-			else if (ship instanceof Dreadnaught && ship.returnHealth() == 2 && ship.getIsActive() == true){
+			else if (ship instanceof Dreadnaught && ship.returnHealth() == 2 && ship.getIsActive()){
 				dreadnaughtUndamagedCount++;
 			}
-			else if (ship instanceof Dreadnaught && ship.returnHealth() == 1 && ship.getIsActive() == true){
+			else if (ship instanceof Dreadnaught && ship.returnHealth() == 1 && ship.getIsActive()){
 				dreadnaughtDamagedCount++;
 			}
-			else if (ship instanceof Warsun && ship.returnHealth() == 2 && ship.getIsActive() == true){
+			else if (ship instanceof Warsun && ship.returnHealth() == 2 && ship.getIsActive()){
 				warsunUndamagedCount++;
 			}
-			else if (ship instanceof Warsun && ship.returnHealth() == 1 && ship.getIsActive() == true){
+			else if (ship instanceof Warsun && ship.returnHealth() == 1 && ship.getIsActive()){
 				warsunDamagedCount++;
 			}
 		}
@@ -214,7 +192,7 @@ public class Player {
 			
 			if (fighterCount > 0) {
 				for (int i = 0; i < fleet.size(); i++){
-					if (fleet.get(i) instanceof Fighter && fleet.get(i).getIsActive() == true){
+					if (fleet.get(i) instanceof Fighter && fleet.get(i).getIsActive()){
 						fleet.get(i).deactivate();
 						//"fighter was destroyed!"
 						hitPending=false;
@@ -225,7 +203,7 @@ public class Player {
 			
 			else if (carrierCount > 0) {
 				for (int i = 0; i < fleet.size(); i++){
-					if (fleet.get(i) instanceof Carrier && fleet.get(i).getIsActive() == true){
+					if (fleet.get(i) instanceof Carrier && fleet.get(i).getIsActive()){
 						fleet.get(i).deactivate();
 						//"carrier was destroyed!"
 						hitPending=false;
@@ -236,7 +214,7 @@ public class Player {
 			
 			else if (destroyerCount > 0) {
 				for (int i = 0; i < fleet.size(); i++){
-					if (fleet.get(i) instanceof Destroyer && fleet.get(i).getIsActive() == true){
+					if (fleet.get(i) instanceof Destroyer && fleet.get(i).getIsActive()){
 						fleet.get(i).deactivate();
 						//"destroyer was destroyed!"
 						hitPending=false;
@@ -247,7 +225,7 @@ public class Player {
 			
 			else if (cruiserCount > 0) {
 				for (int i = 0; i < fleet.size(); i++){
-					if (fleet.get(i) instanceof Cruiser && fleet.get(i).getIsActive() == true){
+					if (fleet.get(i) instanceof Cruiser && fleet.get(i).getIsActive()){
 						fleet.get(i).deactivate();
 						//"cruiser was destroyed!"
 						hitPending=false;
@@ -258,7 +236,7 @@ public class Player {
 			
 			else if (dreadnaughtUndamagedCount > 0) {
 				for (int i = 0; i < fleet.size(); i++){
-					if (fleet.get(i) instanceof Dreadnaught && fleet.get(i).returnHealth() == 2 && fleet.get(i).getIsActive() == true){
+					if (fleet.get(i) instanceof Dreadnaught && fleet.get(i).returnHealth() == 2 && fleet.get(i).getIsActive()){
 						fleet.get(i).sustainDamage();
 						//"dreadnaught sustained damage!"
 						hitPending=false;
@@ -269,7 +247,7 @@ public class Player {
 			
 			else if (dreadnaughtDamagedCount > 0) {
 				for (int i = 0; i < fleet.size(); i++){
-					if (fleet.get(i) instanceof Dreadnaught && fleet.get(i).returnHealth() == 1 && fleet.get(i).getIsActive() == true){
+					if (fleet.get(i) instanceof Dreadnaught && fleet.get(i).returnHealth() == 1 && fleet.get(i).getIsActive()){
 						fleet.get(i).deactivate();
 						//"dreadnaught was destroyed!"
 						hitPending=false;
@@ -280,7 +258,7 @@ public class Player {
 			
 			else if (warsunUndamagedCount > 0) {
 				for (int i = 0; i < fleet.size(); i++){
-					if (fleet.get(i) instanceof Warsun && fleet.get(i).returnHealth() == 2 && fleet.get(i).getIsActive() == true){
+					if (fleet.get(i) instanceof Warsun && fleet.get(i).returnHealth() == 2 && fleet.get(i).getIsActive()){
 						fleet.get(i).sustainDamage();
 						//"warsun sustained damage!"
 						hitPending=false;
@@ -291,7 +269,7 @@ public class Player {
 			
 			else if (warsunDamagedCount > 0) {
 				for (int i = 0; i < fleet.size(); i++){
-					if (fleet.get(i) instanceof Warsun && fleet.get(i).returnHealth() == 1 && fleet.get(i).getIsActive() == true){
+					if (fleet.get(i) instanceof Warsun && fleet.get(i).returnHealth() == 1 && fleet.get(i).getIsActive()){
 						fleet.get(i).deactivate();
 						//"warsun was destroyed!"
 						hitPending=false;
