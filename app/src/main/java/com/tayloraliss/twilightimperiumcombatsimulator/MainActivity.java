@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.startActivity(myIntent);
     }
     public void switchToSimulator(){
-        Intent myIntent = new Intent(MainActivity.this, simulator.class);
+        Intent myIntent = new Intent(MainActivity.this, SimulatorActivity.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
         Bundle myBundle = new Bundle();

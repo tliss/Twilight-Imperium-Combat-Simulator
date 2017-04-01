@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".FleetAssembler" />
-        <activity android:name=".simulator"></activity>
+        <activity android:name=".SimulatorActivity"></activity>
     </application>
 
 </manifest>

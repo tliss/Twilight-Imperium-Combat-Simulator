@@ -17,7 +17,7 @@ import static com.tayloraliss.twilightimperiumcombatsimulator.R.id.draws;
 import static com.tayloraliss.twilightimperiumcombatsimulator.R.id.victories;
 import static com.tayloraliss.twilightimperiumcombatsimulator.R.id.winPercent;
 
-public class simulator extends AppCompatActivity {
+public class SimulatorActivity extends AppCompatActivity {
 
 
 
