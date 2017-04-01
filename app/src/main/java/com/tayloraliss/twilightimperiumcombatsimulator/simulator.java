@@ -2,6 +2,8 @@ package com.tayloraliss.twilightimperiumcombatsimulator;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.TextView;
 
 import com.tayloraliss.twilightimperiumcombatsimulator.ships.Player;
 import com.tayloraliss.twilightimperiumcombatsimulator.ships.Ship;
@@ -10,7 +12,14 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import static com.tayloraliss.twilightimperiumcombatsimulator.R.id.defeats;
+import static com.tayloraliss.twilightimperiumcombatsimulator.R.id.draws;
+import static com.tayloraliss.twilightimperiumcombatsimulator.R.id.victories;
+import static com.tayloraliss.twilightimperiumcombatsimulator.R.id.winPercent;
+
 public class simulator extends AppCompatActivity {
+
+
 
     @Override
     public void onBackPressed() {
@@ -46,6 +55,9 @@ public class simulator extends AppCompatActivity {
         Player p1 = new Player(yourFleet);
         Player p2 = new Player(enemyFleet);
 
+        p1.buildFleet();
+        p2.buildFleet();
+
         int p1Win = 0;
         int p2Win = 0;
         int draw = 0;
@@ -54,23 +66,22 @@ public class simulator extends AppCompatActivity {
         //Simulation starts here
         for (int x=0; x<SIMLENGTH; x++){
 
-            int round = 1;
-            int p1Hits = 0;
-            int p2Hits = 0;
+            int p1Hits;
+            int p2Hits;
 
-            for (Ship ship : p1.fleet){
+            for (Ship ship : p1.getFleet()){
                 ship.initialize();
             }
 
-            for (Ship ship : p2.fleet){
+            for (Ship ship : p2.getFleet()){
                 ship.initialize();
             }
 
-            for (Ship ship : p1.fleet){
+            for (Ship ship : p1.getFleet()){
                 System.out.println(ship.returnName() + " : " + ship.returnHealth() + " | ");
             }
 
-            for (Ship ship : p2.fleet){
+            for (Ship ship : p2.getFleet()){
                 System.out.println(ship.returnName() + " : " + ship.returnHealth() + " | ");
             }
 
@@ -82,7 +93,7 @@ public class simulator extends AppCompatActivity {
             }
 
             // Main combat round
-            while ((p1.fleetIsDead()) && (p2.fleetIsDead())){
+            while ((!p1.fleetIsDead()) && (!p2.fleetIsDead())){
 
                 //p1 attacks
                 p1Hits = p1.shipAttack();
@@ -92,37 +103,30 @@ public class simulator extends AppCompatActivity {
 
 
                 for (int i=p2Hits; i>0; i--){
-                    if (p1.fleetIsDead()) {
-                        System.out.print("Player 1's ");
+                    if (!p1.fleetIsDead()) {
                         p1.takeAHit();
                     }
                 }
 
                 for (int i=p1Hits; i>0; i--){
-                    if (p2.fleetIsDead()) {
-                        System.out.print("Player 2's ");
+                    if (!p2.fleetIsDead()) {
                         p2.takeAHit();
                     }
                 }
-
-                round++;
             }
 
             //"Player 1's fleet has been eliminated! Player 2 wins!"
-            if ((p1.fleetIsDead()) && (p2.fleetIsDead())){
-
+            if ((p1.fleetIsDead()) && (!p2.fleetIsDead())){
                 p2Win++;
             }
 
             //"Player 2's fleet has been eliminated! Player 1 wins!"
-            else if ((p1.fleetIsDead()) && (p2.fleetIsDead())){
-
+            else if ((!p1.fleetIsDead()) && (p2.fleetIsDead())){
                 p1Win++;
             }
 
             //"Both fleets have been annihilated!"
             else if ((p1.fleetIsDead()) && (p2.fleetIsDead())){
-
                 draw++;
             }
         }
@@ -151,9 +155,23 @@ public class simulator extends AppCompatActivity {
         DecimalFormat df = new DecimalFormat("##.##");
         df.setRoundingMode(RoundingMode.DOWN);
 
+        Log.i("myTag", "Victory before and after df: " + Float.toString(chanceOfMAD) + " | " + df.format(chanceOfMAD));
+
 
         //System.out.println("Player 1 won " + p1Win + " battles.\nPlayer 2 won " + p2Win + " battles.\nBoth fleets were destroyed in " + draw + " battles.");
         //System.out.println("If you pursue this plan of action, your fleet has a " + df.format(chanceOfVictory) + "% chance of survival and there is a " + df.format(chanceOfMAD) + "% chance of both fleets being destroyed.");
+
+        TextView p1Victories = (TextView) findViewById(victories);
+        p1Victories.setText(String.valueOf(df.format(p1Win)));
+
+        TextView p2Victories = (TextView) findViewById(defeats);
+        p2Victories.setText(String.valueOf(df.format(p2Win)));
+
+        TextView ties = (TextView) findViewById(draws);
+        ties.setText(String.valueOf(df.format(chanceOfMAD)));
+
+        TextView winChance = (TextView) findViewById(winPercent);
+        winChance.setText(String.valueOf(df.format(chanceOfVictory)));
     }
 
     // Destroyer anti-fighter barrage
@@ -186,5 +204,5 @@ public class simulator extends AppCompatActivity {
             hits--;
         }
     }
-    }
 }
+

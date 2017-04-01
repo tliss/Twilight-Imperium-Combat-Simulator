@@ -76,7 +76,7 @@ public class Player {
 		int numberOfShips = 0;
 		
 		for (Ship ship : this.fleet){
-			if (ship.returnName() == type){
+			if (ship.returnName().equals(type)){
 				numberOfShips++;
 			}
 		}
