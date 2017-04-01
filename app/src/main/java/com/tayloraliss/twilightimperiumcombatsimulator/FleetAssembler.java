@@ -18,6 +18,8 @@ public class FleetAssembler extends AppCompatActivity implements View.OnClickLis
     int numberOfDreadnaughts ;
     int numberOfWarsuns;
     String owner;
+    boolean p1Ready;
+    boolean p2Ready;
 
     @Override
     public void onBackPressed() {
@@ -187,6 +189,7 @@ public class FleetAssembler extends AppCompatActivity implements View.OnClickLis
                     sendBundle.putInt("yourCruisers", numberOfCruisers);
                     sendBundle.putInt("yourDreadnaughts", numberOfDreadnaughts);
                     sendBundle.putInt("yourWarsuns", numberOfWarsuns);
+                    sendBundle.putBoolean("p1Ready", true);
 
                     sendBundle.putInt("enemyFighters", myBundle.getInt("enemyFighters"));
                     sendBundle.putInt("enemyCarriers", myBundle.getInt("enemyCarriers"));
@@ -194,6 +197,7 @@ public class FleetAssembler extends AppCompatActivity implements View.OnClickLis
                     sendBundle.putInt("enemyCruisers", myBundle.getInt("enemyCruiisers"));
                     sendBundle.putInt("enemyDreadnaughts", myBundle.getInt("enemyDreadnaughts"));
                     sendBundle.putInt("enemyWarsuns", myBundle.getInt("enemyWarsuns"));
+                    sendBundle.putBoolean("p2Ready", myBundle.getBoolean("p2Ready"));
                 } else {
                     sendBundle.putInt("enemyFighters", numberOfFighters);
                     sendBundle.putInt("enemyCarriers", numberOfCarriers);
@@ -201,6 +205,7 @@ public class FleetAssembler extends AppCompatActivity implements View.OnClickLis
                     sendBundle.putInt("enemyCruisers", numberOfCruisers);
                     sendBundle.putInt("enemyDreadnaughts", numberOfDreadnaughts);
                     sendBundle.putInt("enemyWarsuns", numberOfWarsuns);
+                    sendBundle.putBoolean("p2Ready", true);
 
                     sendBundle.putInt("yourFighters", myBundle.getInt("yourFighters"));
                     sendBundle.putInt("yourCarriers", myBundle.getInt("yourCarriers"));
@@ -208,6 +213,7 @@ public class FleetAssembler extends AppCompatActivity implements View.OnClickLis
                     sendBundle.putInt("yourCruisers", myBundle.getInt("yourCruiisers"));
                     sendBundle.putInt("yourDreadnaughts", myBundle.getInt("yourDreadnaughts"));
                     sendBundle.putInt("yourWarsuns", myBundle.getInt("yourWarsuns"));
+                    sendBundle.putBoolean("p1Ready", myBundle.getBoolean("p1Ready"));
                 }
 
                 myIntent.putExtras(sendBundle);

@@ -22,12 +22,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int enemyFleetNumberOfDreadnaughts;
     int enemyFleetNumberOfWarsuns;
 
+    boolean p1Ready;
+    boolean p2Ready;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide(); // Hide the action bar
-        //findViewById(R.id.runSimulation).setEnabled(false); //Disable runSimulation button
+        findViewById(R.id.runSimulation).setEnabled(false); //Disable runSimulation button
 
         Button yourAssemble = (Button) findViewById(R.id.yourAssemble);
         yourAssemble.setOnClickListener(this);
@@ -52,6 +55,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             enemyFleetNumberOfCruisers = myBundle.getInt("enemyCruisers");
             enemyFleetNumberOfDreadnaughts = myBundle.getInt("enemyDreadnaughts");
             enemyFleetNumberOfWarsuns = myBundle.getInt("enemyWarsuns");
+
+            p1Ready = myBundle.getBoolean("p1Ready");
+            p2Ready = myBundle.getBoolean("p2Ready");
+        }
+
+        if (p1Ready) {
+            yourAssemble.setText("ASSEMBLED");
+        }
+        if (p2Ready) {
+            enemyAssemble.setText("ASSEMBLED");
+        }
+        if (p1Ready && p2Ready) {
+            findViewById(R.id.runSimulation).setEnabled(true);
         }
     }
 
@@ -90,6 +106,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         myBundle.putInt("enemyCruisers", enemyFleetNumberOfCruisers);
         myBundle.putInt("enemyDreadnaughts", enemyFleetNumberOfDreadnaughts);
         myBundle.putInt("enemyWarsuns", enemyFleetNumberOfWarsuns);
+
+        myBundle.putBoolean("p1Ready", p1Ready);
+        myBundle.putBoolean("p2Ready", p2Ready);
 
         myBundle.putString("owner", owner);
 
